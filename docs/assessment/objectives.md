@@ -11,7 +11,10 @@
   one COCO validation task, no other intentional load.
 - **Not included:** First request after a cold container start, image upload,
   annotation import, and frontend rendering.
-- **Result:** Pending live stack and imported task.
+- **Result:** Passed on task `3` using the authorized session against the local
+  Docker stack. Raw timings: 66.41 ms, 55.53 ms, 61.13 ms, 59.36 ms,
+  57.78 ms. Median: 59.36 ms. Min: 55.53 ms. Max: 66.41 ms.
+  Spread: 10.88 ms.
 
 ## MO-2: Correctness sample
 
@@ -30,4 +33,6 @@
   response with the unfiltered response.
 - **Target:** The filtered response contains no counts from other annotation
   types and invalid values return HTTP 400.
-- **Result:** Covered by `cvat/apps/test/tests.py`; live measurement pending.
+- **Result:** Covered by `cvat/apps/test/tests.py`; invalid values return
+  HTTP 400 in the focused test. Live filtered-response verification is
+  pending.

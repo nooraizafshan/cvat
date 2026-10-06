@@ -68,5 +68,10 @@ assessed minimum; the cost is that live updates may remain unfinished.
 
 ## Changes to the plan
 
-This section will be updated only when the implementation requires a material
-change, with the reason and the resulting cost recorded.
+The plan was updated after the initial implementation to add the
+`annotation_type` filter, live authorization/performance evidence, and the
+Task 4 correctness cross-check. Requirements 8-9 remain skipped: live
+WebSocket updates and reconnect backoff would require new server/client
+protocol work and could not be implemented and evidenced safely within the
+assessment time budget. The cost is that the chart refreshes on page/filter
+changes rather than receiving live annotation events.

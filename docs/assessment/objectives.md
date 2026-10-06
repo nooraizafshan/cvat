@@ -7,15 +7,16 @@
 - **How:** Run the same request five times against the local Docker stack with
   browser cache disabled and record raw elapsed milliseconds from the client.
 - **Target:** Median of five runs at or below 300 ms.
+  The 300 ms target is a practical interactive-response budget for a local
+  analytics request and leaves room for normal network and rendering overhead.
 - **Conditions:** Windows 11 Home, i7-1195G7, 16 GB RAM, local Docker stack,
   one COCO validation task, no other intentional load.
 - **Not included:** First request after a cold container start, image upload,
   annotation import, and frontend rendering.
-- **Result:** Passed on Task `4` using the authorized browser session against
-  the local Docker stack. Raw timings (ms): `62.94`, `66.22`, `54.46`,
-  `59.44`, `54.05`. Median: `59.44 ms`. Min: `54.05 ms`. Max: `66.22 ms`.
-  Spread: `12.17 ms`. The raw command output was captured during the browser
-  verification session.
+- **Result:** Passed on Task `4` using the authorized session against the local
+  Docker stack. Raw timings (ms): `53.76`, `56.67`, `54.39`, `55.07`,
+  `57.68`. Median: `55.07 ms`. Min: `53.76 ms`. Max: `57.68 ms`.
+  Spread: `3.92 ms`. Raw values are preserved in `docs/perf-runs.txt`.
 
 ## MO-2: Correctness sample
 

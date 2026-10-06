@@ -15,10 +15,11 @@
   and authorized user `200` against the local Docker stack.
 - [x] UI page calls the endpoint and renders a graph. Evidence:
   `cvat-ui/src/components/analytics-report/annotation-count-chart.tsx`.
-- [x] UI has explicit loading, no-data, and failed-request states. Evidence:
+- [ ] UI has explicit loading, no-data, and failed-request states. Evidence:
   `cvat-ui/src/components/analytics-report/annotation-count-chart.tsx`;
-  Task 4 chart was verified in the rebuilt browser UI. The empty and error
-  branches are implemented and the empty API response for Task 3 was verified.
+  Task 4 chart was verified in the rebuilt browser UI. The empty API response
+  for Task 3 was verified, but the Task 3 page returned 404 and the live
+  empty/error renders were not verified.
 - [x] One additional filter is implemented. Evidence:
   `annotation_type` in `cvat/apps/test/views.py` and the type selector in
   `cvat-ui/src/components/analytics-report/annotation-count-chart.tsx`.
@@ -31,3 +32,5 @@
 - [x] Every unfinished requirement is listed honestly. Requirements 8-9
   (WebSocket updates and reconnect handling) are not reached.
 - [ ] Final diff has no dead code, debug files, or unrelated changes.
+- [x] Performance raw output is preserved. Evidence:
+  `docs/perf-runs.txt`.

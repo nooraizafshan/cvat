@@ -26,8 +26,8 @@
   `annotation_type` in `cvat/apps/test/views.py` and the type selector in
   `cvat-ui/src/components/analytics-report/annotation-count-chart.tsx`.
 - [x] Objective MO-1 is measured with five raw timings, median, and spread.
-  Evidence: `docs/assessment/objectives.md`; Task 4 median `59.44 ms`,
-  spread `12.17 ms`.
+  Evidence: `docs/assessment/objectives.md`; Task 4 median `55.07 ms`,
+  spread `3.92 ms`.
 - [x] Objective MO-2 is checked against an imported sample with task id and
   raw response. Evidence: Task 4 returned `person=2`; ORM cross-check found
   two matching `LabeledShape` rows.
@@ -36,3 +36,4 @@
 - [ ] Final diff has no dead code, debug files, or unrelated changes.
 - [x] Performance raw output is preserved. Evidence:
   `docs/perf-runs.txt`.
+- [x] COCO import: 1 image, annotation file `annotations/instances_val2017.json`.

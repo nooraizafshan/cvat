@@ -17,9 +17,11 @@
   `cvat-ui/src/components/analytics-report/annotation-count-chart.tsx`.
 - [ ] UI has explicit loading, no-data, and failed-request states. Evidence:
   `cvat-ui/src/components/analytics-report/annotation-count-chart.tsx`;
-  Task 4 chart was verified in the rebuilt browser UI. The empty API response
-  for Task 3 was verified, but the Task 3 page returned 404 and the live
-  empty/error renders were not verified.
+  Task 4 chart and Task 3 empty state were verified in the rebuilt browser UI;
+  screenshot: `docs/assessment/screenshots/empty-state.png`. The failed
+  request produced a server/login error while the backend was stopped, but
+  the chart-level error branch was not isolated; screenshot:
+  `docs/assessment/screenshots/error-state.png`.
 - [x] One additional filter is implemented. Evidence:
   `annotation_type` in `cvat/apps/test/views.py` and the type selector in
   `cvat-ui/src/components/analytics-report/annotation-count-chart.tsx`.

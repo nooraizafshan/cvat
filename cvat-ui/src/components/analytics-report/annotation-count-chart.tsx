@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import Alert from 'antd/lib/alert';
 import Card from 'antd/lib/card';
 import Empty from 'antd/lib/empty';
+import Select from 'antd/lib/select';
 import { Bar } from 'react-chartjs-2';
 import {
     BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Tooltip,
@@ -43,6 +44,7 @@ function isAnnotationCount(value: unknown): value is AnnotationCount {
 
 function AnnotationCountChart({ resource }: Readonly<Props>): JSX.Element {
     const [counts, setCounts] = useState<AnnotationCount[]>([]);
+    const [annotationType, setAnnotationType] = useState<string | undefined>();
     const [fetching, setFetching] = useState(true);
     const [error, setError] = useState<Error | null>(null);
 
@@ -57,7 +59,12 @@ function AnnotationCountChart({ resource }: Readonly<Props>): JSX.Element {
         setError(null);
 
         // The annotation count endpoint returns { results: [{ label, count }] }.
-        fetch(`/api/annotations/count?task_id=${resource.id}`, {
+        const params = new URLSearchParams({ task_id: String(resource.id) });
+        if (annotationType) {
+            params.set('annotation_type', annotationType);
+        }
+
+        fetch(`/api/annotations/count?${params.toString()}`, {
             signal: controller.signal,
         })
             .then(async (response) => {
@@ -91,7 +98,7 @@ function AnnotationCountChart({ resource }: Readonly<Props>): JSX.Element {
             });
 
         return () => controller.abort();
-    }, [resource]);
+    }, [resource, annotationType]);
 
     if (!(resource instanceof Task)) {
         return <Empty description='Annotation counts are available for tasks only' />;
@@ -117,7 +124,25 @@ function AnnotationCountChart({ resource }: Readonly<Props>): JSX.Element {
     }
 
     return (
-        <Card title='Annotations by label' className='cvat-annotation-count-chart'>
+        <Card
+            title='Annotations by label'
+            className='cvat-annotation-count-chart'
+            extra={(
+                <Select
+                    aria-label='Filter annotation type'
+                    allowClear
+                    placeholder='All types'
+                    value={annotationType}
+                    onChange={(value: string | undefined) => setAnnotationType(value)}
+                    options={[
+                        { value: 'shape', label: 'Shapes' },
+                        { value: 'track', label: 'Tracks' },
+                        { value: 'image', label: 'Images' },
+                        { value: 'interval', label: 'Intervals' },
+                    ]}
+                />
+            )}
+        >
             <Bar
                 data={{
                     labels: counts.map((item) => item.label),

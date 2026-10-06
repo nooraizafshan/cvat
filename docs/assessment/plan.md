@@ -29,6 +29,8 @@ failed-request states.
   stored annotations.
 - Add a task analytics page using existing CVAT API and UI patterns. Render a
   bar chart and explicitly handle loading, no data, and request failure.
+- Add an optional annotation-type filter so the chart can focus on shapes,
+  tracks, images, or intervals without changing the stored data.
 - Add focused backend tests for a successful response, anonymous access, and
   task access control. Add frontend tests only where the existing test setup
   makes them practical within the time limit.

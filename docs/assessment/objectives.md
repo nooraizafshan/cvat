@@ -21,3 +21,13 @@
   sample and record the task id and raw response.
 - **Target:** 100% of returned pairs match; no duplicate label names.
 - **Result:** Pending COCO import and live stack.
+
+## MO-3: Annotation-type filter
+
+- **What is measured:** The optional `annotation_type` filter limits results
+  to exactly one concrete annotation table.
+- **How:** Request the same task with `annotation_type=shape` and compare the
+  response with the unfiltered response.
+- **Target:** The filtered response contains no counts from other annotation
+  types and invalid values return HTTP 400.
+- **Result:** Covered by `cvat/apps/test/tests.py`; live measurement pending.

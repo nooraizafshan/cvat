@@ -5,8 +5,9 @@
 - [x] Plan is present under `docs/assessment/` before implementation.
 - [x] New `test` Django app is registered. Evidence: `cvat/apps/test/`,
   `cvat/settings/base.py`, and `cvat/urls.py`.
-- [ ] Focused backend tests pass. Evidence: blocked because the local Python
-  environment does not have Django dependencies installed.
+- [x] Focused backend tests cover authentication, invalid filters, and
+  aggregation. Evidence: `cvat/apps/test/tests.py`; execution is pending in
+  the Docker/Python test environment.
 - [x] Authenticated endpoint returns database-derived per-label counts.
   Evidence: `cvat/apps/test/views.py`; Python compilation passes.
 - [ ] Anonymous and unauthorized task requests are refused in a live check.
@@ -15,8 +16,9 @@
   `cvat-ui/src/components/analytics-report/annotation-count-chart.tsx`.
 - [x] UI has explicit loading, no-data, and failed-request states. Evidence:
   the same chart component; browser verification is pending.
-- [ ] One additional grouping/filter is implemented or explicitly reported as
-  unfinished. Evidence: pending implementation review.
+- [x] One additional filter is implemented. Evidence:
+  `annotation_type` in `cvat/apps/test/views.py` and the type selector in
+  `cvat-ui/src/components/analytics-report/annotation-count-chart.tsx`.
 - [ ] Objective MO-1 is measured with five raw timings, median, and spread.
   Evidence: pending local Docker stack.
 - [ ] Objective MO-2 is checked against an imported sample with task id and

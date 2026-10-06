@@ -1,0 +1,14 @@
+Task 4, authenticated local Docker request, endpoint /api/annotations/count
+Run 1: 53.76 ms
+Run 2: 56.67 ms
+Run 3: 54.39 ms
+Run 4: 55.07 ms
+Run 5: 57.68 ms
+Median: 55.07 ms
+Min: 53.76 ms
+Max: 57.68 ms
+Spread: 3.92 ms
+Target: median <= 300 ms
+Conditions: Windows 11, 15.7 GB RAM, 11th Gen Intel Core i7-1195G7,
+local Docker CVAT stack, Task 4, authorized session.
+Not included: cold start, import/upload, frontend rendering.

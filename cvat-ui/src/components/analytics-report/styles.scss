@@ -28,3 +28,11 @@
     margin-left: $grid-unit-size * 2;
     padding: 0;
 }
+
+.cvat-annotation-count-chart {
+    height: 420px;
+
+    .ant-card-body {
+        height: calc(100% - 57px);
+    }
+}

@@ -24,6 +24,12 @@ class AnnotationCountView(APIView):
     """Return the number of annotations for each label in a task."""
 
     permission_classes = [IsAuthenticated]
+    annotation_models = {
+        "image": LabeledImage,
+        "shape": LabeledShape,
+        "track": LabeledTrack,
+        "interval": LabeledInterval,
+    }
 
     def get(self, request):
         task_id = request.query_params.get("task_id")
@@ -42,7 +48,21 @@ class AnnotationCountView(APIView):
 
         # Annotation is an abstract model, so each concrete annotation table
         # must be aggregated separately before the results are combined.
-        annotation_models = (LabeledImage, LabeledShape, LabeledTrack, LabeledInterval)
+        annotation_type = request.query_params.get("annotation_type")
+        if annotation_type and annotation_type not in self.annotation_models:
+            return Response(
+                {
+                    "detail": "annotation_type must be one of: "
+                    f"{', '.join(self.annotation_models)}."
+                },
+                status=400,
+            )
+
+        annotation_models = (
+            (self.annotation_models[annotation_type],)
+            if annotation_type
+            else tuple(self.annotation_models.values())
+        )
         counts = defaultdict(int)
         for annotation_model in annotation_models:
             rows = (
@@ -56,6 +76,8 @@ class AnnotationCountView(APIView):
 
         return Response(
             {
+                "task_id": task.id,
+                "annotation_type": annotation_type,
                 "results": [
                     {"label": name, "count": count} for name, count in sorted(counts.items())
                 ]
